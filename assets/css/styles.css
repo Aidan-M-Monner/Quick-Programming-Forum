@@ -1,0 +1,133 @@
+/* General */
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: opensans;
+    src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+body {
+    font-family: opensans;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    word-break: break-word;
+    word-wrap: break-word;
+}
+
+@keyframes menu-appear {
+    0%{transform: translateX(50px); opacity: 0}
+    100%{transform: translateX(0px); opacity: 1}
+}
+
+
+/* Top Bar Styles */
+.class_1 {
+    background-color: rgb(229, 229, 229);
+    height: 100%;
+    padding: 0px;
+    width: 100vw;
+}
+
+.class_2 {
+    background-color: #eee;
+    display: flex;
+}
+
+.class_3 {
+    background-color: #fff;
+    flex: 1 1 0%;
+    max-width: 120px;
+    text-align: center;
+}
+
+.class_4 {
+    height: 50px;
+    object-fit: cover;
+}
+
+.class_5 {
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative; 
+}
+
+.item_class_1 {
+    display: none;
+}
+
+.class_6 {
+    flex: 1;
+    max-width: 30px;
+}
+
+.item_class_2 {
+    animation: menu-appear 0.5s ease;
+    display: flex;
+}
+
+.class_7 {
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.class_8 {
+    background-color: #eee;
+    border-right: solid thin #aaa;
+    cursor: pointer;
+    display: flex;
+    display: block;
+    min-width: 100px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none; 
+}
+
+.class_9 {
+    flex:1;
+	max-width:150px;
+	padding:5px;
+	display:flex;
+	align-items: center;
+}
+
+.class_10 {
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 5px;
+    object-fit: cover;
+    width: 40px;
+}
+
+@media (max-width: 992px) {
+    .item_class_0:hover > .item_class_2 {
+        display: flex;
+    }
+    
+    .item_class_1 {
+        cursor: pointer;
+        display: block;
+    }
+
+    .item_class_2 {
+        display: none;
+        flex-direction: column;
+        left: 0px;
+        min-width: 200px;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+    }
+
+    .item_class_2 a {
+        width: 100%;
+    }
+}
+
