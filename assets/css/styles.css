@@ -1,41 +1,12 @@
-/* General */
-*, ::after, ::before {
-    box-sizing: border-box;
-}
 
-@font-face {
-    font-family: opensans;
-    src: url(../fonts/OpenSans-Regular.ttf);
-}
-
-body {
-    font-family: opensans;
-    font-size: 16px;
-    margin: 0px;
-    padding: 0px;
-    word-break: break-word;
-    word-wrap: break-word;
-}
-
-@keyframes menu-appear {
-    0%{transform: translateX(50px); opacity: 0}
-    100%{transform: translateX(0px); opacity: 1}
-}
-
-
+/* ------------------------------ */
 /* Top Bar Styles */
-.class_1 {
-    background-color: rgb(229, 229, 229);
-    height: 100%;
-    padding: 0px;
-    width: 100vw;
-}
-
 .class_2 {
     background-color: #eee;
     display: flex;
 }
 
+/* [Slack Logo] */
 .class_3 {
     background-color: #fff;
     flex: 1 1 0%;
@@ -48,18 +19,14 @@ body {
     object-fit: cover;
 }
 
+/* [Selection Bar] */
 .class_5 {
     align-items: center;
     background-color: #fff;
-    display: flex;
     flex: 1;
     flex-wrap: wrap;
-    justify-content: center;
-    position: relative; 
-}
-
-.item_class_1 {
-    display: none;
+    justify-content: flex-start;
+    position: relative;
 }
 
 .class_6 {
@@ -67,15 +34,19 @@ body {
     max-width: 30px;
 }
 
-.item_class_2 {
-    animation: menu-appear 0.5s ease;
-    display: flex;
+.item_class_1 {
+    display: none;
 }
 
 .class_7 {
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: warp;
     justify-content: flex-start;
+}
+
+.item_class_2 {
+    animation: menu-appear 0.5s ease;
+    display: flex;
 }
 
 .class_8 {
@@ -87,33 +58,17 @@ body {
     min-width: 100px;
     padding: 10px;
     text-align: center;
-    text-decoration: none; 
-}
-
-.class_9 {
-    flex:1;
-	max-width:150px;
-	padding:5px;
-	display:flex;
-	align-items: center;
-}
-
-.class_10 {
-    border-radius: 50%;
-    height: 40px;
-    margin-right: 5px;
-    object-fit: cover;
-    width: 40px;
+    text-decoration: none;
 }
 
 @media (max-width: 992px) {
     .item_class_0:hover > .item_class_2 {
         display: flex;
     }
-    
+
     .item_class_1 {
-        cursor: pointer;
         display: block;
+        cursor: pointer
     }
 
     .item_class_2 {
@@ -131,3 +86,292 @@ body {
     }
 }
 
+/* [User Profile] */
+.class_9 {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    max-width: 150px;
+    padding: 5px;
+}
+
+.class_10 {
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 5px;
+    object-fit: cover;
+    width: 40px;
+}
+
+/* ------------------------------ */
+/* Profile Settings Section Styles */
+
+.class_11 {
+    background-color: #fff;
+    color: #000;
+    margin: 10px auto auto;
+    max-width: 800px;
+    min-height: 400px;
+    padding: 10px;
+}
+
+.class_12 {
+    background-color: #E5E5E5;
+    color: #fff;
+    padding: 10px;
+}
+
+/* [Settings Message] */
+.class_13 {
+    align-items: center;
+    background-color: #32D695;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.class_14 {
+    font-size: 30px;
+}
+
+.class_15 {
+    padding: 5px;
+}
+
+.class_16 {
+    align-items: center;
+    background-color: #FC8A06;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.class_17 {
+    font-size: 30px;
+}
+
+.class_18 {
+    padding: 5px;
+}
+
+/* [Profile/Post] */
+.class_19 {
+    background-color: #3583AA;
+    color: #fff;
+    height: 100px;
+    padding: 10px;
+}
+
+.class_20 {
+    background-color: #EFEFEF;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.class_21 {
+    border-radius: 100% 60% 60% 30%;
+    height: 150px;
+    margin-bottom: 1em;
+    margin-top: -80px;
+    object-fit: cover;
+    transform: rotate(-10deg);
+    width: 150px;
+}
+
+.class_22 {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    text-align: center;
+}
+
+.class_23 {
+    margin: 0em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.class_24 {
+    color: #6752FF;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 10px;
+}
+
+class_25 {
+    padding: 5px;
+}
+
+/* [Settings] */
+.class_26 {
+    background-color: #EDEDED;
+    color: #000;
+    padding: 10px;
+    text-align: center;
+}
+
+.class_27 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.class_28 {
+    height: 150px;
+    object-fit: cover;
+    width: 150px;
+}
+
+.class_29 {
+    display: none;
+}
+
+class_30 {
+    color: #000;
+    padding: 10px;
+    text-align: left;
+}
+
+.class_31 {
+    align-items: center;
+    background-color: #F7F7F7;
+    display: flex;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    padding: 4px;
+}
+
+.class_32 {
+    display: inline-block;
+    margin: 0.5rem 0.5rem 0.5rem 0px;
+    min-width: 50px;
+    width: 113px;
+}
+
+.class_33 {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid #CED4DA;
+    border-radius: .375rem;
+    color: #212529;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    width: 100%;
+}
+
+.class_36 {
+    display: inline-block;
+    left: -3px;
+    margin: 0.5rem 0.5rem 0.5rem 0px;
+    min-width: 50px;
+    width: 113px;
+}
+
+.class_37 {
+    background-color: #eee;
+    padding: 4px;
+}
+
+.class_38 {
+    background-color: #DC3545;
+    border: none;
+    border-radius: 6px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 16px;
+    margin: .25rem .125rem;
+    padding: 10px;
+}
+
+.class_39 {
+    background-color: #0D6EFD;
+    border: none;
+    border-radius: 6px;
+    color: #FFF;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    margin: .25rem .125rem;
+    padding: 10px;
+}
+
+.class_40 {
+    clear: both;
+}
+
+/* ------------------------------ */
+/* Posts Section Styles */
+
+.class_41 {
+    margin: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.class_42 {
+    border: 1px solid #DDDDDD;
+    color: #000;
+    display: flex;
+    min-height: 100px;
+    padding: 10px;
+}
+
+.class_43 {
+    background-color: #EFEFEF;
+    color: #000;
+    flex: 1 1 1%;
+    padding: 4px;
+    width: 100px;
+}
+
+.class_44 {
+    appearance: none;
+    background-clip: padding-box;
+    background-color: #FFF;
+    border: 1px solid #CED4DA;
+    border-radius: 0.375rem;
+    color: #202428;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.class_45 {
+    color: #000;
+    padding: 10px;
+    text-align: center;
+    width: 120px;
+}
+
+.class_46 {
+    background-color: #0D6EFD;
+    border: medium none;
+    border-radius: 6px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0.25rem 0.125rem;
+    padding: 10px;
+    width: 100px;
+}
+
+.class_47 {
+    border-radius: 50%;
+    height: 80px;
+    object-fit: cover;
+    width: 80px;
+}
