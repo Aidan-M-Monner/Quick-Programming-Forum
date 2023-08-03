@@ -9,6 +9,7 @@
 }
 
 body {
+    background-color: #CACACA;
     font-family: opensans;
     font-size: 16px;
     margin: 0px;
@@ -23,7 +24,7 @@ body {
 }
 
 .class_1 {
-    background-color: #FFF;
+    background-color: #CACACA;
     height: 100%;
     padding: 0px;
     width: 100vw;
@@ -79,7 +80,7 @@ body {
 }
 
 .class_8 {
-    background-color: #FFF;
+    background-color: #E0DFDF;
     border-right: solid thin #aaa;
     cursor: pointer;
     display: flex;
@@ -92,6 +93,7 @@ body {
 
 .class_9 {
     align-items: center;
+    background-color: #E0DFDF;
     display: flex;
     flex: 1;
     max-width: 150px;
@@ -141,7 +143,7 @@ body {
 }
 
 .class_12 {
-    background-color: #E5E5E5;
+    background-color: #CACACA;
     color: #FFF;
     padding: 10px;
 }
@@ -183,7 +185,7 @@ body {
 
 /* ------ *Profile ------ */
 .class_20 {
-    background-color: #EFEFEF;
+    background-color: #D6D6D6;
     color: #FFF;
     padding: 10px;
     text-align: center;
@@ -221,7 +223,7 @@ body {
 
 /* ------ *Profile Setting ------ */
 .class_26 {
-    background-color: #EDEDED;
+    background-color: #D6D6D6;
     color: #000;
     padding: 10px;
     text-align: center;
@@ -250,7 +252,7 @@ body {
 
 .class_31 {
     align-items: center;
-    background-color: #F7F7F7;
+    background-color: #E0DFDF;
     display: flex;
     margin-bottom: 4px;
     margin-top: 4px;
@@ -283,7 +285,6 @@ body {
 }
 
 .class_37 {
-    background-color: #EEE;
     padding: 4px;
 }
 
@@ -321,7 +322,7 @@ body {
 }
 
 .class_42 {
-    border: 1px solid #DDD;
+    border: 1px solid #BDBDBD;
     color: #000;
     display: flex;
     min-height: 100px;
@@ -329,7 +330,7 @@ body {
 }
 
 .class_43 {
-    background-color: #EFEFEF;
+    background-color: #D6D6D6;
     color: #000;
     flex: 1 1 1%;
     padding: 4px;
@@ -361,6 +362,7 @@ body {
 
 .class_46 {
     background-color: #0D6EFD;
+    border: none;
     border-radius: 6px;
     color: #FFF;
     cursor: pointer;
@@ -385,7 +387,7 @@ body {
 }
 
 .class_49 {
-    background-color: #EFEFEF;
+    background-color: #D6D6D6;
     color: #000;
     flex: 1 1 1%;
     padding: 10px;
