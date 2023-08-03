@@ -312,3 +312,165 @@ body {
 .class_40 {
     clear: both;
 }
+
+/* ------ *Posts ------ */
+.class_41 {
+    margin: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.class_42 {
+    border: 1px solid #DDD;
+    color: #000;
+    display: flex;
+    min-height: 100px;
+    padding: 10px;
+}
+
+.class_43 {
+    background-color: #EFEFEF;
+    color: #000;
+    flex: 1 1 1%;
+    padding: 4px;
+    width: 100px;
+}
+
+.class_44 {
+    appearance: none;
+    background-color: #FFF;
+    background-clip: padding-box;
+    border: 1px solid #CED4DA;
+    border-radius: 0.375rem;
+    color: #202428;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.class_45 {
+    color: #000;
+    padding: 10px;
+    text-align: center;
+    width: 120px;
+}
+
+.class_46 {
+    background-color: #0D6EFD;
+    border-radius: 6px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0.25rem 0.125rem;
+    padding: 10px;
+    width: 100px;
+}
+
+/* ------ *Post ------ */
+.class_47 {
+    border-radius: 50%;
+    height: 80px;
+    object-fit: cover;
+    width: 80px;
+}
+
+.class_48 {
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.class_49 {
+    background-color: #EFEFEF;
+    color: #000;
+    flex: 1 1 1%;
+    padding: 10px;
+    width: 100px;
+}
+
+.class_51 {
+    color: #000;
+    display: flex;
+    padding: 5px;
+}
+
+.class_52 {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.class_53 {
+    display: inline-block;
+    padding: 5px;
+}
+
+/* ------ *Post Page Buttons ------ */
+.class_54 {
+    background-color: #0D6EFD;
+    border: medium none;
+    border-radius: 6px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 16px;
+    left: -4px;
+    margin: 0.25rem 0.125rem;
+    padding: 10px;
+}
+
+/* ------ *Signup ------ */
+.class_55 {
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.627);
+    border: 1px solid #BDC3C8;
+    box-shadow: #C3C3C3 1px 1px 30px;
+    color: #000;
+    left: 50%;
+    min-height: 300px;
+    padding: 0px;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 400px;
+}
+
+.class_56 {
+    height: 80px;
+    object-fit: cover;
+    width: 80px;
+}
+
+.class_57 {
+    background-color: rgba(255, 255, 255, 0.24);
+    color: #000;
+    padding: 10px;
+}
+
+.class_58 {
+    align-items: center;
+    display: flex;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    padding: 4px;
+}
+
+.class_59 {
+    padding: 4px;
+}
+
+.class_60 {
+    background-color: #0D6EFD;
+    border: medium none;
+    border-radius: 6px;
+    color: #FFF;
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    margin: 0.25rem 0.125rem;
+    padding: 10px;
+    width: 100%;
+}
