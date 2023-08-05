@@ -1,3 +1,9 @@
+<?php
+    require('config.inc.php');
+    require('functions.php');
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>

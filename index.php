@@ -1,4 +1,5 @@
 <?php
+    require('config.inc.php');
     require('functions.php');
 ?>
 
@@ -26,6 +27,7 @@
 
                 <!-- Posts ---------------------------------------------->
                 <h1 class="class_41">Posts</h1>
+                <?php if(logged_in()):?>
                 <div class="class_42">
                     <div class="class_43">
                         <textarea placeholder="Whats on your mind?" name="comments" class="class_44"></textarea>
@@ -34,9 +36,17 @@
                         <button class="class_46">Post</button>
                     </div>
                 </div>
+                <?php else:?>
+                    <div class="class_13">
+                        <i class="bi bi-info-circle-fill class_14"></i>
+                        <div onclick="signup.show()" class="class_15" style="cursor: pointer">
+                            You're not logged in <br> Click here to login and post 
+                        </div>
+                    </div>
+                <?php endif;?>
 
                 <!-- *Post ---------------------------------------------->
-                <div class="class_42">
+                <div class="class_42" style="animation: appear 3s ease;">
                     <div class="class_45">
                         <img src="assets/images/59.png" class="class_47">
                         <h2 class="class_48">Jane Name <br></h2>
@@ -52,10 +62,10 @@
                 </div>
 
                 <!-- *Comments Page Buttons ---------------------------------------------->
-                <div class="class_37">
+                <div class="class_37" style="display: flex; justify-content: space-between;">
                     <button class="class_54">Prev Page</button>
+                    <div> Page 1 </div>
                     <button class="class_39">Next Page</button>
-                    <div class="class_40"></div>
                 </div>
             </div>
 

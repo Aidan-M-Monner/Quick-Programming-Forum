@@ -1,3 +1,6 @@
+<!-- Prevention from being seen -->
+<?php defined('APP') or die('direct script access denied!'); ?>
+
 <header class="class_2">
     <div class="class_3">
         <img src="assets/images/slack.png" class="class_4">
