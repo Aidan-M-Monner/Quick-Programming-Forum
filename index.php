@@ -69,9 +69,34 @@
                 </div>
             </div>
 
-            <!-- Signup ---------------------------------------------->
+            <!-- Signup & Login ---------------------------------------------->
             <?php include('signup.inc.php') ?>
+            <?php include('login.inc.php') ?>
 
         </section>
     </body>
+
+    <script>
+        var user = {
+            logout: function() {
+                let form = new FormData(); // Create very own form
+                form.append('data_type', 'signup');
+
+                var ajax = new XMLHttpRequest();
+                ajax.addEventListener('readystatechange', function() {
+                    // Set to 4 to make sure we got a response.
+                    if(ajax.readyState == 4) {
+                        if(ajax.status == 200) {
+                            alert(ajax.responseText);
+                            window.location.reload(); // Refresh page
+                        } else {
+                            alert("Please check your internet connection");
+                        }
+                    }
+                });
+                ajax.open('post', 'ajax.inc.php', true);
+                ajax.send(form);
+            }
+        }
+    </script>
 </html>

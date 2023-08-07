@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="class_9">
-        <img src="assets/images/user.jpg" class="class_10">
+        <img src="<?= get_image($_SESSION['USER']['image'])?>" class="class_10">
         Hi, User
     </div>
 </header>
