@@ -1,6 +1,7 @@
 <?php
     require('config.inc.php');
     require('functions.php');
+    // logout();
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
                 <?php else:?>
                     <div class="class_13">
                         <i class="bi bi-info-circle-fill class_14"></i>
-                        <div onclick="signup.show()" class="class_15" style="cursor: pointer">
+                        <div onclick="login.show()" class="class_15" style="cursor: pointer">
                             You're not logged in <br> Click here to login and post 
                         </div>
                     </div>
@@ -75,28 +76,4 @@
 
         </section>
     </body>
-
-    <script>
-        var user = {
-            logout: function() {
-                let form = new FormData(); // Create very own form
-                form.append('data_type', 'signup');
-
-                var ajax = new XMLHttpRequest();
-                ajax.addEventListener('readystatechange', function() {
-                    // Set to 4 to make sure we got a response.
-                    if(ajax.readyState == 4) {
-                        if(ajax.status == 200) {
-                            alert(ajax.responseText);
-                            window.location.reload(); // Refresh page
-                        } else {
-                            alert("Please check your internet connection");
-                        }
-                    }
-                });
-                ajax.open('post', 'ajax.inc.php', true);
-                ajax.send(form);
-            }
-        }
-    </script>
 </html>

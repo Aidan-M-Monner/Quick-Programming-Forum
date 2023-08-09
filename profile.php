@@ -1,3 +1,13 @@
+<?php
+    require('config.inc.php');
+    require('functions.php');
+
+    if(!logged_in()) {
+        header("Location: index.php");
+        die;
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,6 +44,7 @@
                         </div>
                     </div>
                     <a href="profile-settings.php"><button class="class_39">Edit Profile</button></a>
+                    <button class="class_39" onclick="user.logout()">Logout</button>
                     <div style="clear: both"></div>
                 </div>
             </div>

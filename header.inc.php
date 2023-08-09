@@ -17,8 +17,37 @@
             <a href="#" class="class_8">Contact</a>
         </div>
     </div>
-    <div class="class_9">
-        <img src="<?= get_image($_SESSION['USER']['image'])?>" class="class_10">
-        Hi, User
+    <div class="class_9" style="display: flex; align-items: center;">
+        <?php if(logged_in()):?>
+            <a href="profile.php"><img src="<?= get_image($_SESSION['USER']['image'])?>" class="class_10"></a>
+            <a href="profile.php"><span><?= $_SESSION['USER']['username'] ?></span></a>
+        <?php else:?>
+            <span style="cursor: pointer;" onclick="login.show()">Login</span>
+        <?php endif;?>
     </div>
 </header>
+<script>
+        var user = {
+            logout: function() {
+                let form = new FormData(); // Create very own form
+                form.append('data_type', 'logout');
+
+                var ajax = new XMLHttpRequest();
+                ajax.addEventListener('readystatechange', function() {
+                    // Set to 4 to make sure we got a response.
+                    if(ajax.readyState == 4) {
+                        if(ajax.status == 200) {
+                            let obj = JSON.parse(ajax.responseText); // Convert JSON back to an array
+                            alert(obj.message);
+
+                            window.location.href = "index.php"; // Return to index
+                        } else {
+                            alert("Please check your internet connection");
+                        }
+                    }
+                });
+                ajax.open('post','ajax.inc.php', true);
+                ajax.send(form);
+            }
+        }
+    </script>
