@@ -39,6 +39,23 @@
                     authenticate($row);
                 }
             } 
+        } else if($_POST['data_type'] == 'add_post') {
+            $post = addslashes($_POST['post']);
+            $user_id = $_SESSION["USER"]['id'];
+            $date = date("Y-m-d H:i:s");
+
+            $query = "insert into posts (post, user_id, date) values ('$post', '$user_id', '$date')";
+            query($query);
+
+            $query = "select * from posts where user_id = '$user_id' order by id desc limit 1";
+            $row = query($query);
+
+            if($row) {
+                $row = $row[0];
+                $info['success'] = true;
+                $info['message'] = "your post was created successfully.";
+                $info['row'] = $row;
+            }
         } else if($_POST['data_type'] == 'login') {
             $email = addslashes($_POST['email']);
 

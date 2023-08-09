@@ -1,6 +1,11 @@
 <?php
     require('config.inc.php');
     require('functions.php');
+
+    if(!logged_in()) {
+        header("Location: index.php");
+        die;
+    }
 ?>
 
 
