@@ -56,6 +56,27 @@
                 $info['message'] = "your post was created successfully.";
                 $info['row'] = $row;
             }
+        } else if($_POST['data_type'] == 'load_posts') {
+
+            $query = "select * from posts order by id desc limit 10";
+            $rows = query($query);
+
+            if($rows) {
+                foreach ($rows as $key => $row) {
+                    $rows[$key]['date'] = date("jS M, Y H:i:s a", strtotime($row['date']));
+
+                    $id = $row['user_id'];
+                    $query = "select * from users where id = '$id' limit 1";
+                    $user_row = query($query);
+
+                    if($user_row) {
+                        $rows[$key]['user'] = $user_row[0];
+                        $rows[$key]['user']['image'] = get_image($user_row[0]['image']);
+                    }
+                }
+                $info['success'] = true;
+                $info['rows'] = $rows;
+            }
         } else if($_POST['data_type'] == 'login') {
             $email = addslashes($_POST['email']);
 

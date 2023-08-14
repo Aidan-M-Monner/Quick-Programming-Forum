@@ -110,9 +110,7 @@
                             alert(obj.message);
 
                             if(obj.success) {
-                                let post_holder = document.querySelector(".js-posts");
-                                post_holder.innerHTML = ajax.responseText;
-                                document.querySelector('.js-post-input').value = "";
+                                mypost.load_posts();
                             }
                         } else {
                             alert("Please check your internet connection");
@@ -137,15 +135,37 @@
 
                             if(obj.success) {
                                 let post_holder = document.querySelector(".js-posts");
-                                post_holder.innerHTML = ajax.responseText;
-                                document.querySelector('.js-post-input').value = "";
+                                
+                                post_holder.innerHTML = "";
+                                let template = document.querySelector(".js-post-card");
+
+                                for (var i = 0; i < obj.rows.length; i++) {
+                                    template.querySelector(".js-post").innerHTML = obj.rows[i].post;
+                                    template.querySelector(".js-date").innerHTML = obj.rows[i].date;
+                                    template.querySelector(".js-comment-link").setAttribute('onclick', `mypost.view_comments(${obj.rows[i].id})`);
+                                    template.querySelector(".js-username").innerHTML = (typeof obj.rows[i].user == 'object') ? obj.rows[i].user.username : 'User';
+
+                                    if(typeof obj.rows[i].user == 'object') {
+                                        template.querySelector(".js-image").src = obj.rows[i].user.image;
+                                    }
+
+                                    let clone = template.cloneNode(true);
+                                    clone.classList.remove('hide');
+                                    post_holder.appendChild(clone);
+                                }
                             }
                         } 
                     }
                 });
                 ajax.open('post','ajax.inc.php', true);
                 ajax.send(form);
+            },
+
+            view_comments: function(id) {
+                window.location.href = "post.php?id=" + id;
             }
         }
+
+        mypost.load_posts();
     </script>
 </html>
