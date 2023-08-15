@@ -58,7 +58,12 @@
             }
         } else if($_POST['data_type'] == 'load_posts') {
 
-            $query = "select * from posts order by id desc limit 10";
+            // Calculate Page number!
+            $page_number = (int)$_POST['page_number'];
+            $limit = 10;
+            $offset = ($page_number - 1) * $limit;
+
+            $query = "select * from posts order by id desc limit $limit offset $offset";
             $rows = query($query);
 
             if($rows) {
@@ -74,9 +79,10 @@
                         $rows[$key]['user']['image'] = get_image($user_row[0]['image']);
                     }
                 }
-                $info['success'] = true;
                 $info['rows'] = $rows;
             }
+            $info['success'] = true;
+            
         } else if($_POST['data_type'] == 'login') {
             $email = addslashes($_POST['email']);
 
