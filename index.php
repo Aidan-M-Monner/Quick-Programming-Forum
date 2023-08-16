@@ -86,7 +86,7 @@
                 </div>
                 <div class="class_51 js-action-buttons">
                     <div class="class_53 js-edit-button" style="color: green; cursor: pointer;"> Edit </div>
-                    <div onclick="mypost.delete()" class="class_53 js-cdelete-button" style="color: red; cursor: pointer;"> Delete </div>
+                    <div onclick="mypost.delete()" class="class_53 js-delete-button" style="color: red; cursor: pointer;"> Delete </div>
                 </div>
             </div>
         </div>
@@ -163,6 +163,8 @@
                                         template.querySelector(".js-post").innerHTML = obj.rows[i].post;
                                         template.querySelector(".js-date").innerHTML = obj.rows[i].date;
                                         template.querySelector(".js-comment-link").setAttribute('onclick', `mypost.view_comments(${obj.rows[i].id})`);
+                                        template.querySelector(".js-delete-button").setAttribute('onclick', `mypost.delete(${obj.rows[i].id})`);
+                                        template.querySelector(".js-edit-button").setAttribute('onclick', `postedit.show(${obj.rows[i].id})`);
                                         template.querySelector(".js-username").innerHTML = (typeof obj.rows[i].user == 'object') ? obj.rows[i].user.username : 'User';
                                         template.querySelector(".js-profile-link").href = (typeof obj.rows[i].user == 'object') ? 'profile.php?id='+obj.rows[i].user.id : '#';
 
@@ -171,6 +173,13 @@
                                         }
 
                                         let clone = template.cloneNode(true);
+                                        clone.setAttribute('id', 'post_' + obj.rows[i].id);
+
+                                        let action_buttons = clone.querySelector(".js-action-buttons");
+                                        if(!obj.rows[i].user_owns) {
+                                            action_buttons.remove();
+                                        }
+
                                         clone.classList.remove('hide');
                                         post_holder.appendChild(clone);
                                     }
@@ -204,7 +213,36 @@
                 }
                 mypost.load_posts();
                 // window.location.href = 'index.php?page=' + mypost.page_number;
-            }
+            },
+
+            // ------------ Delete  ----------------------- //
+            delete: function(id) {
+                if(!confirm("Are you sure you want to delete this post?!")) {
+                    return;
+                }
+                let form = new FormData(); // Create very own form
+                form.append('id', id);
+                form.append('data_type', 'delete_post');
+                var ajax = new XMLHttpRequest();
+
+                ajax.addEventListener('readystatechange', function() {
+                    // Set to 4 to make sure we got a response.
+                    if(ajax.readyState == 4) {
+                        if(ajax.status == 200) {
+                            let obj = JSON.parse(ajax.responseText);
+                            alert(obj.message);
+
+                            if(obj.success) {
+                                mypost.load_posts();
+                            }
+                        } else {
+                            alert("Please check your internet connection");
+                        }
+                    }
+                });
+                ajax.open('post','ajax.inc.php', true);
+                ajax.send(form);
+            },
         }
 
         mypost.load_posts();

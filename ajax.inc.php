@@ -56,7 +56,19 @@
                 $info['message'] = "your post was created successfully.";
                 $info['row'] = $row;
             }
+        } else if($_POST['data_type'] == 'delete_post') {
+            $id = (int)($_POST['id']);
+            $user_id = $_SESSION["USER"]['id'];
+
+            $query = "delete from posts where id = '$id' && user_id = '$user_id' limit 1";
+            query($query);
+
+            $info['success'] = true;
+            $info['message'] = "your post was deleted successfully.";
+
         } else if($_POST['data_type'] == 'load_posts') {
+
+            $user_id = $_SESSION['USER']['id'] ?? 0; // Can load posts without being logged in
 
             // Calculate Page number!
             $page_number = (int)$_POST['page_number'];
@@ -69,6 +81,12 @@
             if($rows) {
                 foreach ($rows as $key => $row) {
                     $rows[$key]['date'] = date("jS M, Y H:i:s a", strtotime($row['date']));
+
+                    // Check if a user owns a post so that it may be deleted/edited by them.
+                    $rows[$key]['user_owns'] = false;
+                    if($user_id == $row['user_id']) {
+                        $rows[$key]['user_owns'] = true;
+                    }
 
                     $id = $row['user_id'];
                     $query = "select * from users where id = '$id' limit 1";
