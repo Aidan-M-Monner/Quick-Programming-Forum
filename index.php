@@ -68,6 +68,7 @@
             <!-- Signup & Login ---------------------------------------------->
             <?php include('signup.inc.php') ?>
             <?php include('login.inc.php') ?>
+            <?php include('post.edit.inc.php') ?>
 
         </section>
 
@@ -174,6 +175,10 @@
 
                                         let clone = template.cloneNode(true);
                                         clone.setAttribute('id', 'post_' + obj.rows[i].id);
+
+                                        let row_data = JSON.stringify(obj.rows[i]);
+                                        row_data = row_data.replaceAll('"', '\\"'); // Replaces every quote with a \", \\ are for literal string to be taken.
+                                        clone.setAttribute('row', row_data);
 
                                         let action_buttons = clone.querySelector(".js-action-buttons");
                                         if(!obj.rows[i].user_owns) {

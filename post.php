@@ -1,6 +1,14 @@
 <?php
     require('config.inc.php');
     require('functions.php');
+
+    $post_id = $_GET['id'] ?? 0;
+    $query = "select * from posts where id = '$post_id' limit 1";
+    $row = query($query);
+
+    if($row) {
+        $row = $row[0];
+    }
 ?>
 
 
@@ -30,20 +38,29 @@
                 <h1 class="class_41">Single Post</h1>
 
                 <!-- *Post ---------------------------------------------->
-                <div class="class_42">
-                    <div class="class_45">
-                        <img src="assets/images/59.png" class="class_47">
-                        <h2 class="class_48">Jane Name <br></h2>
-                    </div>
-                    <div class="class_49">
-                        <h4 class="class_41">3rd Jan 23 14:35pm <br></h4>
-                        <div class="class_15">[Dummy Text]</div>
-                        <div class="class_51">
-                            <i class="bi bi-chat-left-dots class_52"></i>
-                            <div class="class_53">Comments</div>
+                <?php if(!empty($row)):?>
+                    <div class="class_42">
+                        <div class="class_45">
+                            <img src="assets/images/59.png" class="class_47">
+                            <h2 class="class_48">Jane Name <br></h2>
+                        </div>
+                        <div class="class_49">
+                            <h4 class="class_41">3rd Jan 23 14:35pm <br></h4>
+                            <div class="class_15">[Dummy Text]</div>
+                            <div class="class_51">
+                                <i class="bi bi-chat-left-dots class_52"></i>
+                                <div class="class_53">Comments</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php else:?>
+                    <div class="class_13">
+                        <i class="bi bi-info-circle-fill class_14"></i>
+                        <div onclick="login.show()" class="class_15" style="cursor: pointer">
+                            Post not found!
+                        </div>
+                    </div>
+                <?php endif;?>
 
                 <!-- *Comments ---------------------------------------------->
                 <div class="class_11">

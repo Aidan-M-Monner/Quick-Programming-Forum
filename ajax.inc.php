@@ -66,6 +66,17 @@
             $info['success'] = true;
             $info['message'] = "your post was deleted successfully.";
 
+        } else if($_POST['data_type'] == 'edit_post') {
+            $post = addslashes($_POST['post']);
+            $id = (int)($_POST['id']);
+            $user_id = $_SESSION["USER"]['id'];
+
+            $query = "update posts set  post = '$post' where user_id = '$user_id' && id = '$id' limit 1"; 
+            query($query);
+
+            $info['success'] = true;
+            $info['message'] = "your post was edited successfully.";
+
         } else if($_POST['data_type'] == 'load_posts') {
 
             $user_id = $_SESSION['USER']['id'] ?? 0; // Can load posts without being logged in
