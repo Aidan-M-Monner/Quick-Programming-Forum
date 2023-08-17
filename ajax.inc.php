@@ -92,6 +92,7 @@
             if($rows) {
                 foreach ($rows as $key => $row) {
                     $rows[$key]['date'] = date("jS M, Y H:i:s a", strtotime($row['date']));
+                    $rows[$key]['post'] = nl2br(htmlspecialchars($row['post']));
 
                     // Check if a user owns a post so that it may be deleted/edited by them.
                     $rows[$key]['user_owns'] = false;

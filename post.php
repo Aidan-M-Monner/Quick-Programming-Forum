@@ -8,6 +8,14 @@
 
     if($row) {
         $row = $row[0];
+        $id = $row['user_id'];
+        $query = "select * from users where id = '$id' limit 1";
+        $user_row = query($query);
+        
+        if($user_row){
+            $rows['user'] = $user_row[0];
+            $rows['user']['image'] = get_image($user_row[0]['image']);
+        }
     }
 ?>
 
@@ -39,69 +47,70 @@
 
                 <!-- *Post ---------------------------------------------->
                 <?php if(!empty($row)):?>
-                    <div class="class_42">
+                    <div id="post_<?=$row['id']?>" row="<?=addslashes(json_encode($row))?>" class="class_42"> 
                         <div class="class_45">
                             <img src="assets/images/59.png" class="class_47">
-                            <h2 class="class_48">Jane Name <br></h2>
+                            <h2 class="class_48" style="font-size: 16px"> <?=$row['user']['username'] ?? 'Unknown';?></h2>
                         </div>
                         <div class="class_49">
-                            <h4 class="class_41">3rd Jan 23 14:35pm <br></h4>
-                            <div class="class_15">[Dummy Text]</div>
+                            <h4 class="class_41"><?=date("jS M, Y H:i:s a", strtotime($row['date']))?></h4>
+                            <div class="class_15"><?=nl2br(htmlspecialchars($row['post']))?></div>
                             <div class="class_51">
-                                <i class="bi bi-chat-left-dots class_52"></i>
-                                <div class="class_53">Comments</div>
+                                <div onclick="postedit.show(<?=$row['id']?>)" class="class_53" style="color: green; cursor: pointer;"> Edit </div>
+                                <div onclick="mypost.delete(<?=$row['id']?>)" class="class_53" style="color: red; cursor: pointer;"> Delete </div>
                             </div>
                         </div>
                     </div>
-                <?php else:?>
-                    <div class="class_13">
-                        <i class="bi bi-info-circle-fill class_14"></i>
-                        <div onclick="login.show()" class="class_15" style="cursor: pointer">
-                            Post not found!
+
+                    <!-- *Comments ---------------------------------------------->
+                    <div class="class_11">
+                        <h1 class="class_41" style="font-size: 16px;">Comments</h1>
+                        <div class="class_42">
+                            <div class="class_43">
+                                <textarea placeholder="Write a comment" name="comments" class="class_44"></textarea>
+                            </div>
+                            <div class="class_45">
+                                <button class="class_46">Comment</button>
+                            </div>
                         </div>
+
+                        <!-- *Comment ---------------------------------------------->
+                        <div class="class_42">
+                            <div class="class_45">
+                                <img src="assets/images/user.jpg" class="class_47">
+                                <h2 class="class_48">Jane Name <br></h2>
+                            </div>
+                            <div class="class_49">
+                                <h4 class="class_41">3rd Jan 23 14:35pm <br></h4>
+                                <div class="class_15">[Dummy Text]</div>
+                                <div class="class_51">
+                                    <i class="bi bi-chat-left-dots class_52"></i>
+                                    <div class="class_53">Comments</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- *Comments Page Buttons ---------------------------------------------->
+                        <div class="class_37">
+                            <button class="class_54">Prev Page</button>
+                            <button class="class_39">Next Page</button>
+                            <div class="class_40"></div>
+                        </div>
+                    </div>
+
+                <?php else:?>
+                    <div class="class_16">
+                        <i class="bi bi-exclamation-circle-fill class_14"></i>
+                        <div class="class_15">Post not found!</div>
                     </div>
                 <?php endif;?>
-
-                <!-- *Comments ---------------------------------------------->
-                <div class="class_11">
-                    <h1 class="class_41" style="font-size: 16px;">Comments</h1>
-                    <div class="class_42">
-                        <div class="class_43">
-                            <textarea placeholder="Write a comment" name="comments" class="class_44"></textarea>
-                        </div>
-                        <div class="class_45">
-                            <button class="class_46">Comment</button>
-                        </div>
-                    </div>
-
-                    <!-- *Comment ---------------------------------------------->
-                    <div class="class_42">
-                        <div class="class_45">
-                            <img src="assets/images/user.jpg" class="class_47">
-                            <h2 class="class_48">Jane Name <br></h2>
-                        </div>
-                        <div class="class_49">
-                            <h4 class="class_41">3rd Jan 23 14:35pm <br></h4>
-                            <div class="class_15">[Dummy Text]</div>
-                            <div class="class_51">
-                                <i class="bi bi-chat-left-dots class_52"></i>
-                                <div class="class_53">Comments</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- *Comments Page Buttons ---------------------------------------------->
-                    <div class="class_37">
-                        <button class="class_54">Prev Page</button>
-                        <button class="class_39">Next Page</button>
-                        <div class="class_40"></div>
-                    </div>
-                </div>
             </div>
+            <br><br>
 
             <!-- Signup ---------------------------------------------->
             <?php include('signup.inc.php') ?>
-
+            <?php include('post.edit.inc.php') ?>
         </section>
     </body>
+    <script src="./assets/js/mypost.js"></script>
 </html>
