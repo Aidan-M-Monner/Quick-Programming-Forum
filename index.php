@@ -85,10 +85,7 @@
                     <i class="class_52 bi bi-chat-left-dots"></i>
                     <div class="class_53 js-comment-link" style="color: blue; cursor: pointer;"> Comments </div>
                 </div>
-                <div class="class_51 js-action-buttons">
-                    <div class="class_53 js-edit-button" style="color: green; cursor: pointer;"> Edit </div>
-                    <div onclick="mypost.delete()" class="class_53 js-delete-button" style="color: red; cursor: pointer;"> Delete </div>
-                </div>
+                
             </div>
         </div>
     </body>
@@ -97,5 +94,5 @@
         var page_number = <?=$page?>;
         var home_page = true;
     </script>
-    <script src="./assets/js/mypost.js"></script>
+    <script src="./assets/js/mypost.js?v2"></script>
 </html>

@@ -45,3 +45,11 @@
         }
         return 'assets/images/user.jpg?v1';
     }
+
+    // See if user owns post
+    function i_own_post($row) {
+        if(logged_in() && $_SESSION['USER']['id'] == $row['user_id']) {
+            return true;
+        }
+        return false;
+    }
