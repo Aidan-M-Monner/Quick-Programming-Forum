@@ -1,7 +1,8 @@
-var mypost = {
+var mycomment = {
 
     // ------------ Get page number  ----------------------- //
     page_number: (typeof page_number == 'undefined') ? 1 : page_number,
+    post_id: (typeof post_id == 'undefined') ? 0 : post_id,
 
     // ------------ Submit Posts  ----------------------- //
     submit : function(e) {
@@ -9,7 +10,7 @@ var mypost = {
         e.preventDefault();
 
         // Search for all inputs
-        let text = document.querySelector('.js-post-input').value.trim();
+        let text = document.querySelector('.js-comment-input').value.trim();
 
         // Make sure post contains content.
         if(text == "") {
@@ -18,20 +19,22 @@ var mypost = {
         }
 
         let form = new FormData(); // Create very own form
+        form.append('post_id', mycomment.post_id);
         form.append('post', text);
-        form.append('data_type', 'add_post');
+        form.append('data_type', 'add_comment');
         var ajax = new XMLHttpRequest();
 
         ajax.addEventListener('readystatechange', function() {
             // Set to 4 to make sure we got a response.
             if(ajax.readyState == 4) {
                 if(ajax.status == 200) {
+                    console.log(ajax.responseText);
                     let obj = JSON.parse(ajax.responseText);
                     alert(obj.message);
 
                     if(obj.success) {
-                        document.querySelector(".js-post-input").value = "";
-                        mypost.load_posts();
+                        document.querySelector(".js-comment-input").value = "";
+                        mycomment.load_comments();
                     }
                 } else {
                     alert("Please check your internet connection");
@@ -42,32 +45,35 @@ var mypost = {
         ajax.send(form);
     },
 
-    // ------------ Load Posts onto a page ----------------------- //
-    load_posts : function(e) {
+    // ------------ Load Comments onto a page ----------------------- //
+    load_comments : function(e) {
 
         let form = new FormData(); // Create very own form
 
-        form.append('page_number', mypost.page_number)
-        form.append('data_type', 'load_posts');
+        form.append('post_id', mycomment.post_id);
+        form.append('page_number', mycomment.page_number)
+        form.append('data_type', 'load_comments');
         var ajax = new XMLHttpRequest();
 
         ajax.addEventListener('readystatechange', function() {
             // Set to 4 to make sure we got a response.
             if(ajax.readyState == 4) {
                 if(ajax.status == 200) {
+                    console.log(ajax.responseText);
                     let obj = JSON.parse(ajax.responseText);
 
                     if(obj.success) {
-                        let post_holder = document.querySelector(".js-posts");
+                        let post_holder = document.querySelector(".js-comments");
                         
                         post_holder.innerHTML = "";
-                        let template = document.querySelector(".js-post-card");
+                        let template = document.querySelector(".js-comment-card");
 
                         if(typeof obj.rows == 'object') {
-                            for (var i = 0; i < obj.rows.length; i++) {
-                                template.querySelector(".js-post").innerHTML = obj.rows[i].post;
+                            for (var i = obj.rows.length - 1; i >= 0; i--) {
+                                template.querySelector(".js-comment").innerHTML = obj.rows[i].post;
                                 template.querySelector(".js-date").innerHTML = obj.rows[i].date;
-                                template.querySelector(".js-comment-link").setAttribute('onclick', `mypost.view_comments(${obj.rows[i].id})`);
+                                template.querySelector(".js-delete-button").setAttribute('onclick', `mycomment.delete(${obj.rows[i].id})`);
+                                template.querySelector(".js-edit-button").setAttribute('onclick', `postedit.show(${obj.rows[i].id})`);
                                 template.querySelector(".js-username").innerHTML = (typeof obj.rows[i].user == 'object') ? obj.rows[i].user.username : 'User';
                                 template.querySelector(".js-profile-link").href = (typeof obj.rows[i].user == 'object') ? 'profile.php?id='+obj.rows[i].user.id : '#';
 
@@ -82,14 +88,19 @@ var mypost = {
                                 row_data = row_data.replaceAll('"', '\\"'); // Replaces every quote with a \", \\ are for literal string to be taken.
                                 clone.setAttribute('row', row_data);
 
+                                let action_buttons = clone.querySelector(".js-action-buttons");
+                                if(!obj.rows[i].user_owns) {
+                                    action_buttons.remove();
+                                }
+
                                 clone.classList.remove('hide');
                                 post_holder.appendChild(clone);
                             }
                         } else {
-                            post_holder.innerHTML = "<div style='text-align: center; padding: 10px;'>No posts found</div>";
+                            post_holder.innerHTML = "<div style='text-align: center; padding: 10px;'>No comments found</div>";
                         }
                     }
-                    document.querySelector(".js-page-number").innerHTML = "Page " + mypost.page_number;
+                    document.querySelector(".js-page-number").innerHTML = "Page " + mycomment.page_number;
                 } 
             }
         });
@@ -104,17 +115,17 @@ var mypost = {
 
     // ------------ Page switching  ----------------------- //
     next_page: function() {
-        mypost.page_number = mypost.page_number + 1;
-        mypost.load_posts();
-        // window.location.href = 'index.php?page=' + mypost.page_number; //Page refresh
+        mycomment.page_number = mycomment.page_number + 1;
+        mycomment.load_comments();
+        // window.location.href = 'index.php?page=' + mycomment.page_number; //Page refresh
     },
     prev_page: function() {
-        mypost.page_number = mypost.page_number - 1;
-        if(mypost.page_number < 1) {
-            mypost.page_number = 1;
+        mycomment.page_number = mycomment.page_number - 1;
+        if(mycomment.page_number < 1) {
+            mycomment.page_number = 1;
         }
-        mypost.load_posts();
-        // window.location.href = 'index.php?page=' + mypost.page_number;
+        mycomment.load_comments();
+        // window.location.href = 'index.php?page=' + mycomment.page_number;
     },
 
     // ------------ Delete  ----------------------- //
@@ -147,6 +158,4 @@ var mypost = {
     },
 };
 
-if(typeof home_page != 'undefined') {
-    mypost.load_posts();
-}
+mycomment.load_comments();

@@ -47,7 +47,7 @@
                     <div class="class_13">
                         <i class="bi bi-info-circle-fill class_14"></i>
                         <div onclick="login.show()" class="class_15" style="cursor: pointer">
-                            You're not logged in <br> Click here to login and post 
+                            You're not logged in <br> Click here to login and post!
                         </div>
                     </div>
                 <?php endif;?>

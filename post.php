@@ -17,6 +17,13 @@
             $row['user']['image'] = get_image($user_row[0]['image']);
         }
     }
+
+    $page = $_GET['page'] ?? 1;
+    $page = (int)$page;
+
+    if($page < 1) {
+        $page = 1;
+    }
 ?>
 
 
@@ -68,40 +75,35 @@
                     <!-- *Comments ---------------------------------------------->
                     <div class="class_11">
                         <h1 class="class_41" style="font-size: 16px;">Comments</h1>
-                        <div class="class_42">
-                            <div class="class_43">
-                                <textarea placeholder="Write a comment" name="comments" class="class_44"></textarea>
-                            </div>
-                            <div class="class_45">
-                                <button class="class_46">Comment</button>
-                            </div>
-                        </div>
 
-                        <!-- *Comment ---------------------------------------------->
-                        <section class="js-posts">
-                            <div style="padding: 10px; text-align: center;">Loading comments...</div>
-
-                            <div class="class_42">
+                        <?php if(logged_in()):?>
+                            <form onsubmit="mycomment.submit(event)" method="post" class="class_42">
+                                <div class="class_43">
+                                    <textarea placeholder="Write a comment" name="post" class="class_44 js-comment-input"></textarea>
+                                </div>
                                 <div class="class_45">
-                                    <img src="assets/images/user.jpg" class="class_47">
-                                    <h2 class="class_48">Jane Name <br></h2>
+                                    <button class="class_46">Comment</button>
                                 </div>
-                                <div class="class_49">
-                                    <h4 class="class_41">3rd Jan 23 14:35pm <br></h4>
-                                    <div class="class_15">[Dummy Text]</div>
-                                    <div class="class_51">
-                                        <i class="bi bi-chat-left-dots class_52"></i>
-                                        <div class="class_53">Comments</div>
-                                    </div>
+                            </form>
+                        <?php else:?>
+                            <div class="class_13">
+                                <i class="bi bi-info-circle-fill class_14"></i>
+                                <div onclick="login.show()" class="class_15" style="cursor: pointer; text-align: center;">
+                                    You're not logged in <br> Click here to login and comment!
                                 </div>
                             </div>
+                        <?php endif;?>
+
+                        <!-- *Comment Loading ---------------------------------------------->
+                        <section class="js-comments">
+                            <div style="padding: 10px; text-align: center;">Loading comments...</div>
                         </section>
 
                         <!-- *Comments Page Buttons ---------------------------------------------->
-                        <div class="class_37">
-                            <button class="class_54">Prev Page</button>
-                            <button class="class_39">Next Page</button>
-                            <div class="class_40"></div>
+                        <div class="class_37" style="display: flex; justify-content: space-between;">
+                            <button onclick="mycomment.prev_page()" class="class_54">Prev Page</button>
+                            <div class="js-page-number">Page 1</div>
+                            <button onclick="mycomment.next_page()" class="class_39">Next Page</button>
                         </div>
                     </div>
 
@@ -114,27 +116,33 @@
             </div>
             <br><br>
 
-            <!-- Signup ---------------------------------------------->
-            <?php include('signup.inc.php') ?>
-            <?php include('post.edit.inc.php') ?>
+            <!-- Signup/Login/Edit Posts ---------------------------------------------->
+            <?php include('login.inc.php')?>
+            <?php include('signup.inc.php')?>
+            <?php include('post.edit.inc.php')?>
         </section>
 
-        <div class="class_42 js-post-card hide" style="animation: appear 3s ease;">
+        <!-- *Comment Section Template ---------------------------------------------->
+        <div class="class_42 js-comment-card hide" style="animation: appear 3s ease;">
             <a href="#" class="class_45 js-profile-link">
                 <img src="assets/images/user.jpg" class="class_47 js-image">
                 <h2 class="class_48 js-username" style="font-size: 16px">Jane Name</h2>
             </a>
             <div class="class_49">
                 <h4 class="class_41 js-date">3rd Jan 23 14:35 pm </h4>
-                <div class="class_15 js-post"> [Dummy Text] </div>
-                <div class="class_51">
-                    <i class="class_52 bi bi-chat-left-dots"></i>
-                    <div class="class_53 js-comment-link" style="color: blue; cursor: pointer;"> Comments </div>
+                <div class="class_15 js-comment"> [Dummy Text] </div>
+                <div class="class_51 js-action-buttons">
+                    <div class="class_53 js-edit-button" style="color: blue; cursor: pointer;">Edit</div>
+                    <div class="class_53 js-delete-button" style="color: blue; cursor: pointer;">Delete</div>
                 </div>
-                
             </div>
         </div>
 
     </body>
+    <script>
+        var page_number = <?=$page?>;
+        var post_id = <?=$post_id?>;
+    </script>
     <script src="./assets/js/mypost.js?v3"></script>
+    <script src="./assets/js/mycomment.js?v3"></script>
 </html>
