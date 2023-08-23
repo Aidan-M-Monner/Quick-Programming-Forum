@@ -53,3 +53,11 @@
         }
         return false;
     }
+
+    // See if user owns profile
+    function i_own_profile($row) {
+        if(logged_in() && $_SESSION['USER']['id'] == $row['id']) {
+            return true;
+        }
+        return false;
+    }

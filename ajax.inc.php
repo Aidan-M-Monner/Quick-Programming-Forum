@@ -83,7 +83,7 @@
             $limit = 10;
             $offset = ($page_number - 1) * $limit;
 
-            $query = "select * from posts order by id desc limit $limit offset $offset";
+            $query = "select * from posts where parent_id = 0 order by id desc limit $limit offset $offset";
             $rows = query($query);
 
             if($rows) {
@@ -165,7 +165,7 @@
 
             // Calculate Page number!
             $page_number = (int)$_POST['page_number'];
-            $limit = 10;
+            $limit = 2;
             $offset = ($page_number - 1) * $limit;
 
             $query = "select * from posts where parent_id = '$post_id' order by id desc limit $limit offset $offset";
@@ -204,7 +204,6 @@
             $date = date("Y-m-d H:i:s");
 
             $query = "insert into posts (post, user_id, date, parent_id) values ('$post', '$user_id', '$date', '$post_id')";
-            echo $query;
             query($query);
 
             $query = "select * from posts where user_id = '$user_id' && parent_id = '$post_id' order by id desc limit 1";

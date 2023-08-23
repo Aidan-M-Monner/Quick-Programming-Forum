@@ -83,7 +83,7 @@
                 <div class="class_15 js-post"> [Dummy Text] </div>
                 <div class="class_51">
                     <i class="class_52 bi bi-chat-left-dots"></i>
-                    <div class="class_53 js-comment-link" style="color: blue; cursor: pointer;"> Comments </div>
+                    <div class="class_53 js-comment-link" style="color: blue; cursor: pointer;"> Comments 0 </div>
                 </div>
                 
             </div>

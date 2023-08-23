@@ -68,6 +68,13 @@ var mypost = {
                                 template.querySelector(".js-post").innerHTML = obj.rows[i].post;
                                 template.querySelector(".js-date").innerHTML = obj.rows[i].date;
                                 template.querySelector(".js-comment-link").setAttribute('onclick', `mypost.view_comments(${obj.rows[i].id})`);
+
+                                if(obj.rows[i].comments > 0) {
+                                    template.querySelector(".js-comment-link").innerHTML = `Comments (${obj.rows[i].comments})`;
+                                } else {
+                                    template.querySelector(".js-comment-link").innerHTML = `Comments`; // Eliminate 0 from comments
+                                }
+                                
                                 template.querySelector(".js-username").innerHTML = (typeof obj.rows[i].user == 'object') ? obj.rows[i].user.username : 'User';
                                 template.querySelector(".js-profile-link").href = (typeof obj.rows[i].user == 'object') ? 'profile.php?id='+obj.rows[i].user.id : '#';
 

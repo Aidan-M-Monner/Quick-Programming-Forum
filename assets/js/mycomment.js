@@ -59,7 +59,6 @@ var mycomment = {
             // Set to 4 to make sure we got a response.
             if(ajax.readyState == 4) {
                 if(ajax.status == 200) {
-                    console.log(ajax.responseText);
                     let obj = JSON.parse(ajax.responseText);
 
                     if(obj.success) {
