@@ -46,9 +46,9 @@
                             <img src="<?=get_image($row['image'])?>" class="class_21">
                             <div class="class_22">
                                 <h1 class="class_23"><?=$row['username']?></h1>
-                                <a href="<?=$row['fb']?>"><i class="bi bi-facebook class_24"></i></a>
-                                <a href="<?=$row['tw']?>"><i class="bi bi-twitter class_24"></i></a>
-                                <a href="<?=$row['yt']?>"><i class="bi bi-youtube class_24"></i></a>
+                                <a target="_new" href="<?=$row['fb']?>"><i class="bi bi-facebook class_24"></i></a>
+                                <a target="_new" href="<?=$row['tw']?>"><i class="bi bi-twitter class_24"></i></a>
+                                <a target="_new" href="<?=$row['yt']?>"><i class="bi bi-youtube class_24"></i></a>
                                 <div class="class_15"> <?=htmlspecialchars($row['bio'])?></div>
                             </div>
 
